@@ -1,4 +1,4 @@
-**1. Topic and scope **
+**1. Topic and scope**
 
 What it is: A digital closet, where you can tell it the weather and it suggests an outfit based on what is in your closet. It will sort through your tops, bottoms, shoes, and accessories to put together a good outfit. 
 
