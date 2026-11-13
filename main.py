@@ -1,31 +1,45 @@
 from listener import OutfitListener
-
-# TODO: Import your clothing, closet, and generator classes.
+from clothing import Top, Bottom, Jacket
+from closet import Closet
+from outfitgenerator import OutfitGenerator
 
 
 class ConsoleOutfitListener(OutfitListener):
-    def outfit_ready(self, outfit):
-        # TODO: Print the generated outfit.
-        pass
+    def outfit_generated(self, outfit):
+        print ("Your outfit: ")
+        for category, item in outfit.items():
+            print(f"{category}: {item}")
+        
 
     def outfit_failed(self, message):
-        # TODO: Print the failure message.
-        pass
-
+        print(f"Outfit could not be completed: {message}")
 
 def main():
-    # TODO: Create sample clothing items.
+    # name, color, fabric, seasons, (waterproof if jacket)
+    tshirt = Top("T-shirt", "white", "cotton", ["spring", "summer", "fall"])
+    jeans = Bottom("Jeans", "blue", "denim", ["spring", "summer", "fall"])
+    jacket = Jacket("Jacket", "black", "leather", ["winter", "fall"], waterproof=True)
 
-    # TODO: Create a closet and add the sample items.
+    # Closet with sample clothes
+    closet = Closet()
+    closet.add_item(tshirt)
+    closet.add_item(jeans)
+    closet.add_item(jacket)
 
-    # TODO: Create your outfit generator.
+    #Generator that reads from the closet
+    generator = OutfitGenerator(closet)
 
-    # TODO: Create and register a ConsoleOutfitListener.
+    # ConsoleOutfitListener that prints outfit results
+    listener = ConsoleOutfitListener()
+    generator.add_outfit_listener(listener)
 
-    # TODO: Demonstrate successful outfit generation.
+    # an example outfit generation.
+    print("75 degrees F, sunny, summer")
+    generator.generate("sunny", 75, "summer")
 
-    # TODO: Demonstrate a failure caused by missing matching items.
-    pass
+    # a failure caused by missing items.
+    print("25 degrees F, snowy, winter")    
+    generator.generate("snowy", 25, "winter")
 
 
 if __name__ == "__main__":

@@ -59,11 +59,14 @@ class Bottom(ClothingItem):
 
 class Jacket(ClothingItem):
     def __init__(self,name,color,fabric,season, waterproof):
-
-    def is_suitable(self, weather, temperature,):
+        super().__init__(name, color, fabric, season)
+        self._waterproof = waterproof
         
+    def is_suitable(self, weather, temperature,):
+        self._check_weather(weather)
+        if weather == "rainy" and not self._waterproof:
+            return self._waterproof
+        if temperature <=70:
+            return True
+        return False
 
-class Shoes(ClothingItem):
-    def is_suitable(self, weather, temperature):
-        # TODO: Implement your rules for shoes.
-        pass
