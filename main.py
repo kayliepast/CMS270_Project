@@ -5,10 +5,10 @@ from outfitgenerator import OutfitGenerator
 
 
 class ConsoleOutfitListener(OutfitListener):
-    def outfit_generated(self, outfit):
+    def outfit_ready(self, outfit):
         print ("Your outfit: ")
         for category, item in outfit.items():
-            print(f"{category}: {item}")
+            print(f"{category}: {item.get_name()}")
         
 
     def outfit_failed(self, message):
